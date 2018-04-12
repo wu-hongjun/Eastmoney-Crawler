@@ -1,6 +1,6 @@
 # PROJECT Stargazer
 ## Machine Learning Development and Experiment
-* Intended to learn ML using Python, TuriCreate, TensorFlow, OpenCV, etc.
+* Intended to learn ML using Python, TuriCreate, OpenCV, TensorFlow, etc.
 * Great stuff is coming...as I don't quite know what that is yet.
 
 ## TuriCreate
