@@ -1,4 +1,5 @@
 # PROJECT Stargazer
+* Developer: * *[Hongjun Wu](https://github.com/Errrneist/Stargazer/blob/master/Documents/Resume-Github.pdf)*
 ## Machine Learning Development and Experiment
 * Intended to learn ML using Python, TuriCreate, OpenCV, TensorFlow, etc.
 * Great stuff is coming...as I don't quite know what that is yet.
