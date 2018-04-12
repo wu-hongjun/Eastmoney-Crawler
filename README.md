@@ -5,6 +5,7 @@
 
 ## TuriCreate
 #### Regression
+* Added a notebook for bias and variances.
 #### Classification
 #### Clusters and Similiarity
 #### Recommending Products
