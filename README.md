@@ -1,3 +1,5 @@
+<img align="right" src="https://github.com/Errrneist/Stargazer/blob/master/IMG/turi-logo.png" alt="University of Washington" width="100">
+
 # PROJECT Stargazer
 * Developer:  *[Hongjun Wu](https://github.com/Errrneist/Stargazer/blob/master/Documents/Resume-Github.pdf)*
 ## Machine Learning Development and Experiment
