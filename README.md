@@ -4,7 +4,7 @@
 #### Developer:  *[Hongjun Wu](https://github.com/Errrneist/Stargazer/blob/master/Documents/Resume-Github.pdf)*
 ## Machine Learning Development and Experiment
 * Intended to learn ML using Python, TuriCreate, OpenCV, TensorFlow, etc.
-* Name from a joke among many Chinese programmers: 'Machine Learning is like Alchemy.'
+* Name from a quote used by Chinese ML reasearchers: 'Machine Learning is like Alchemy.'
 
 ## Special Thanks
 * [Dr. Carlos Guestrin](https://www.cs.washington.edu/people/faculty/guestrin) for development of Turicreate and instruction.
