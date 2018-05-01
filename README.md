@@ -17,3 +17,12 @@
 ## OpenCV
 #### T-Rex
 * A small program to detect objects in an image using machine vision.
+
+## Special Thanks
+* [Dr. Carlos Guestrin](https://www.cs.washington.edu/people/faculty/guestrin)
+* [Dr. Emily B. Fox](https://homes.cs.washington.edu/~ebfox/)
+
+## Credits
+### Thanks for all the developers to make this repository possible.
+* [Apple Turicreate](https://github.com/apple/turicreate)
+* [Google TensorFlow](https://www.tensorflow.org)
