@@ -1,7 +1,7 @@
 <img align="right" src="https://github.com/Errrneist/Alchemist/blob/master/IMG/turi-logo.png" alt="University of Washington" width="100">
 
 # Project Alchemist
-* Developer:  *[Hongjun Wu](https://github.com/Errrneist/Stargazer/blob/master/Documents/Resume-Github.pdf)*
+#### Developer:  *[Hongjun Wu](https://github.com/Errrneist/Stargazer/blob/master/Documents/Resume-Github.pdf)*
 ## Machine Learning Development and Experiment
 * Intended to learn ML using Python, TuriCreate, OpenCV, TensorFlow, etc.
 * Name from a joke among many Chinese programmers: 'Machine Learning is like Alchemy.'
