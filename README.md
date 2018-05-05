@@ -7,8 +7,8 @@
 * Name from a quote used by Chinese ML reasearchers: 'Machine Learning is like Alchemy.'
 
 ## Special Thanks
-* [Dr. Carlos Guestrin](https://www.cs.washington.edu/people/faculty/guestrin) for development of Turicreate and instruction.
-* [Dr. Emily B. Fox](https://homes.cs.washington.edu/~ebfox/) for instruction.
+* [Dr. Carlos Guestrin](https://www.cs.washington.edu/people/faculty/guestrin).
+* [Dr. Emily B. Fox](https://homes.cs.washington.edu/~ebfox/).
 
 ## TuriCreate
 #### Regression
