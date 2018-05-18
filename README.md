@@ -9,6 +9,7 @@
 ## Special Thanks
 * [Dr. Carlos Guestrin](https://www.cs.washington.edu/people/faculty/guestrin).
 * [Dr. Emily B. Fox](https://homes.cs.washington.edu/~ebfox/).
+
 ## Machine Learning
 #### TuriCreate
 ##### Regression
