@@ -11,13 +11,7 @@
 * [Dr. Emily B. Fox](https://homes.cs.washington.edu/~ebfox/).
 
 ## Machine Learning
-#### TuriCreate
-##### Regression
-* Added a notebook for bias and variances.
-##### Classification
-##### Clusters and Similiarity
-##### Recommending Products
-##### Deep Learning and Searching for Images
+### TuriCreate
 
 ## Computer Vision
 ### OpenCV
