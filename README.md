@@ -21,7 +21,7 @@
 
 ## Computer Vision
 ### OpenCV
-#### T-Rex
+#### [T-Rex](https://github.com/Errrneist/Alchemist/tree/master/ImageRecognition/OpenCV/T-Rex)
 * A small program to detect objects in an image using machine vision.
 
 ## Credits
