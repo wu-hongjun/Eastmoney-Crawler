@@ -9,18 +9,13 @@
 ## Special Thanks
 * [Dr. Carlos Guestrin](https://www.cs.washington.edu/people/faculty/guestrin).
 * [Dr. Emily B. Fox](https://homes.cs.washington.edu/~ebfox/).
+
 ## Machine Learning
-#### TuriCreate
-##### Regression
-* Added a notebook for bias and variances.
-##### Classification
-##### Clusters and Similiarity
-##### Recommending Products
-##### Deep Learning and Searching for Images
+### TuriCreate
 
 ## Computer Vision
 ### OpenCV
-#### T-Rex
+#### [T-Rex](https://github.com/Errrneist/Alchemist/tree/master/ImageRecognition/OpenCV/T-Rex)
 * A small program to detect objects in an image using machine vision.
 
 ## Credits
