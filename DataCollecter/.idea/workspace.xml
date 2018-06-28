@@ -14,16 +14,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="StockHistoryCollector.ipynb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="StockHistoryCollector.ipynb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/StockHistoryCollector.ipynb">
           <provider selected="true" editor-type-id="ipnb-editor">
             <state>
-              <selected id="2" />
+              <selected id="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NewsCollector.ipynb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="NewsCollector.ipynb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NewsCollector.ipynb">
           <provider selected="true" editor-type-id="ipnb-editor">
             <state>
@@ -66,9 +66,9 @@
         <option value="$PROJECT_DIR$/CollectData.ipynb" />
         <option value="$PROJECT_DIR$/NewsAnalyzer.ipynb" />
         <option value="$PROJECT_DIR$/TasteSoup.ipynb" />
-        <option value="$PROJECT_DIR$/StockHistoryCollector.ipynb" />
         <option value="$PROJECT_DIR$/PageAnalyzer.ipynb" />
         <option value="$PROJECT_DIR$/NewsCollector.ipynb" />
+        <option value="$PROJECT_DIR$/StockHistoryCollector.ipynb" />
       </list>
     </option>
   </component>
@@ -432,20 +432,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StockHistoryCollector.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PageAnalyzer.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/NewsAnalyzer.ipynb">
       <provider selected="true" editor-type-id="ipnb-editor">
         <state>
@@ -457,6 +443,20 @@
       <provider selected="true" editor-type-id="ipnb-editor">
         <state>
           <selected id="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PageAnalyzer.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StockHistoryCollector.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="5" />
         </state>
       </provider>
     </entry>
