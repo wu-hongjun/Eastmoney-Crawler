@@ -1,9 +1,10 @@
-<img align="right" src="https://github.com/Errrneist/Alchemist/blob/master/IMG/xiao.png" alt="University of Washington" width="100">
+<img align="right" src="https://github.com/Errrneist/Alchemist/blob/master/IMG/xiao.png" alt="FuXiao" width="100">
 
-# Project Alchemist
+# Project Alchemist: 炼金术士
 #### Developer:  
-* [Hongjun Wu](https://errrneist.github.io)
+* [吴泓骏（Hongjun Wu）](https://errrneist.github.io)
 * [拂晓工作室 (FuXiao Studio)](https://fuxiao-studio.com)
+
 #### Machine Learning Development and Experiment
 * Data science, web scraping, machine learning, and natural language processing.
 * Name from a quote used by Chinese ML reasearchers: 'Machine Learning is like Alchemy.'
