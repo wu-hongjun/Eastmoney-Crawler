@@ -1,4 +1,4 @@
-22<img align="right" src="https://github.com/Errrneist/Alchemist/blob/master/IMG/xiao.png" alt="FuXiao" width="100">
+<img align="right" src="https://github.com/Errrneist/Alchemist/blob/master/IMG/xiao.png" alt="FuXiao" width="100">
 
 # Project Alchemist
 * 项目代号来源于天朝程序员对机器学习的昵称：‘炼丹’，意为点石成金【延年益寿需要+1s 炼丹没用】
@@ -35,5 +35,6 @@
 * [Dr. Emily B. Fox](https://homes.cs.washington.edu/~ebfox/).
 
 ## 参考（Credits）
+* More credits and citations are in the codes.
 * [Apple Turicreate](https://github.com/apple/turicreate)
 * [Google TensorFlow](https://www.tensorflow.org)
