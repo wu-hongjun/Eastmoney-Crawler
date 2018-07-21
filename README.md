@@ -6,7 +6,7 @@
 
 #### 开发者（Developer）:  
 * [吴泓骏（Hongjun Wu）](https://errrneist.github.io)
-* [拂晓工作室 (FuXiao Studio)](https://fuxiao-studio.com)
+* [拂晓社 (FuXiao Studio)](https://fuxiao-studio.com)
 
 #### 机器学习实践（Machine Learning Development and Experiment）
 * 结合机器学习，爬虫，自然语言识别，大数据，深度学习解决问题。
