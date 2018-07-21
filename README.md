@@ -1,4 +1,4 @@
-<img align="right" src="https://github.com/Errrneist/Alchemist/blob/master/IMG/xiao.png" alt="FuXiao" width="100">
+22<img align="right" src="https://github.com/Errrneist/Alchemist/blob/master/IMG/xiao.png" alt="FuXiao" width="100">
 
 # Project Alchemist
 * 项目代号来源于天朝程序员对机器学习的昵称：‘炼丹’，意为点石成金【延年益寿需要+1s 炼丹没用】
@@ -15,6 +15,14 @@
 #### 功能（Functions）：
 * 通过爬取「东方财富网」新闻信息并进行分析来快速整理目前投资风向。
 * By using Python to request 'www.eastmoney.com', a Chinese investment news website and analyze the news to quickly identify what is the current trend of investing.
+
+#### 目标 (Main Goal)：
+* 1. 主要行业：电子信息，新能源，新材料，新技术
+* 2. 金叉（MACD上穿）
+* 3. 成交量环比增幅30%以上
+* 4. 换手率大于5%
+* 5. 营业收入增加30%以上
+* 6. 净利润增加30%以上
 
 #### 实现（Implement）：
 * 环境（Environment）：Python 3.6, Jupyter Notebook
