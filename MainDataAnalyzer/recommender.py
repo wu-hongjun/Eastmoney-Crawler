@@ -7,16 +7,8 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 from decimal import Decimal
 from selenium.common.exceptions import ElementNotVisibleException
-from time import sleep
 import turicreate as tc
-import pandas as pd
-import time
-import urllib
-import re
-import requests
-import csv
-import pymysql
-import os
+
 
 
 # 定义要搜索的URL信息
@@ -85,7 +77,6 @@ def grabData(bs, SFrame):
                                     table[counter].find(class_=' listview-col-Code').string + '#lrb-0'],
                                 })
         counter += 1
-        # print(row_sframe)
         SFrame = SFrame.append(row_sframe)
 
     return SFrame
@@ -189,7 +180,7 @@ def recommendStock(SFrame):
     counter = 0
     while counter < len(SFrame):
         if getReport(SFrame[counter]['report_url'], income_limit, profit_limit):
-            print(SFrame[counter]['name'])
+            print(SFrame[counter]['name'], SFrame[counter]['name'])
         counter += 1
 
 
@@ -215,6 +206,7 @@ analyze_tech = analyze_stock(tech)
 
 
 # 最终推荐
+print('----------推荐----------')
 recommendStock(analyze_info)
 recommendStock(analyze_energy)
 recommendStock(analyze_material)
