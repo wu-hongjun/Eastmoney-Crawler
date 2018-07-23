@@ -3,8 +3,6 @@
 # Project Alchemist
 * 项目代号来源于天朝程序员对机器学习的昵称：‘炼丹’，意为点石成金【延年益寿需要+1s 炼丹没用】
 * Name from a quote used by Chinese ML reasearchers: 'Machine Learning is like Alchemy.'
-* 结合机器学习，爬虫，自然语言识别，大数据，深度学习解决问题。
-* Data science, web scraping, machine learning, and natural language processing.
 
 ### 下载（Download）
 * [Jupyter NoteBook](https://github.com/Errrneist/Alchemist/blob/master/MainDataAnalyzer/MainDataCollector.ipynb)
