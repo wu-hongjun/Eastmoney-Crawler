@@ -3,22 +3,20 @@
 # Project Alchemist
 * 项目代号来源于天朝程序员对机器学习的昵称：‘炼丹’，意为点石成金【延年益寿需要+1s 炼丹没用】
 * Name from a quote used by Chinese ML reasearchers: 'Machine Learning is like Alchemy.'
+* 结合机器学习，爬虫，自然语言识别，大数据，深度学习解决问题。
+* Data science, web scraping, machine learning, and natural language processing.
 
-## 下载（Download）
+### 下载（Download）
 * [Jupyter NoteBook](https://github.com/Errrneist/Alchemist/blob/master/MainDataAnalyzer/MainDataCollector.ipynb)
 * [Python Script](https://github.com/Errrneist/Alchemist/blob/master/MainDataAnalyzer/recommender.py)
 
-#### 开发者（Developer）:  
+### 开发者（Developer）:  
 * [吴泓骏（Hongjun Wu）](https://errrneist.github.io)
 * [拂晓社 (FuXiao Studio)](https://fuxiao-studio.com)
 
 ### 感谢（Special Thanks）
 * [Dr. Carlos Guestrin](https://www.cs.washington.edu/people/faculty/guestrin).
 * [Dr. Emily B. Fox](https://homes.cs.washington.edu/~ebfox/).
-
-### 机器学习实践（Machine Learning Development and Experiment）
-* 结合机器学习，爬虫，自然语言识别，大数据，深度学习解决问题。
-* Data science, web scraping, machine learning, and natural language processing.
 
 ### 功能（Functions）：
 * 1. 通过爬取「东方财富网」信息并进行分析来快速整理目前投资风向。
