@@ -486,7 +486,7 @@ def inputCode():
     code_name = str(input('代号:'))
     if code_name == 'all':
         for each_bk in code_dict:
-            bk_name = codename_dict[each_bk.keys()]
+            bk_name = codename_dict[each_bk]
             makeRecommend(code_dict[each_bk], bk_name)
     elif code_name == 'quit':
         user_interface()
@@ -509,7 +509,7 @@ def makeRecommend(url, bk_name):
     analyze_data = analyze_stock(all_data)
 
     # 最终推荐
-    print('---------------' + bk_name + '---------------')
+    print('---------------------' + bk_name + '---------------------')
     recommendStock(analyze_data)
 
 
