@@ -150,7 +150,68 @@ code_dict = {'a' : 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04
              'ggg':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04331',
              'hhh':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04771'}
 
-name_dict = {'a':'电子信息',
+name_dict = {'电子信息': 'a',
+             '新能源':'b',
+             '新材料':'c',
+             '全息技术':'d',
+             '医疗行业':'e',
+             '保险':'f',
+             '化工行业':'g',
+             '化肥行业':'h',
+             '有色金属':'i',
+             '钢铁行业':'j',
+             '家电行业':'k',
+             '包装材料':'l',
+             '水泥建材':'m',
+             '贵金属':'n',
+             '电信运营':'o',
+             '航天航空':'p',
+             '木业家具':'q',
+             '多元金融':'r',
+             '食品饮料':'s',
+             '化工行业':'t',
+             '水泥建材':'u',
+             '电信运营':'v',
+             '家电行业':'w',
+             '专用设备':'x',
+             '文教休闲':'y',
+             '交运物流':'z',
+             '塑胶制品':'aa',
+             '金属制品':'bb',
+             '输配电气':'cc',
+             '石油行业':'dd',
+             '机械行业':'ee',
+             '环保工程':'ff',
+             '旅游酒店':'gg',
+             '船舶制造':'hh',
+             '安防设备':'ii',
+             '房地产':'jj',
+             '银行':'kk',
+             '汽车行业':'ll',
+             '装修装饰':'mm',
+             '金属制品':'nn',
+             '园林工程':'oo',
+             '券商信托':'pp',
+             '港口水运':'qq',
+             '电力行业':'rr',
+             '造纸印刷':'ss',
+             '输配电气':'tt',
+             '化肥行业':'uu',
+             '交运设备':'vv',
+             '农药兽药':'ww',
+             '综合行业':'xx',
+             '材料行业':'yy',
+             '文化传媒':'zz',
+             '国际贸易':'aaa',
+             '软件服务':'bbb',
+             '电子信息':'ccc',
+             '电子元件':'ddd',
+             '医药制造':'eee',
+             '包装材料':'fff',
+             '农牧饲渔':'ggg',
+             '酿酒行业':'hhh'}
+
+codename_dict = {'a':'电子信息',
              'b':'新能源',
              'c':'新材料',
              'd':'全息技术',
@@ -210,6 +271,7 @@ name_dict = {'a':'电子信息',
              'fff':'包装材料',
              'ggg':'农牧饲渔',
              'hhh':'酿酒行业'}
+
 # 一个从页面获取页数的函数
 def getPageNumber(bs):
     all_buttons = bs.findAll(class_="paginate_button")
@@ -234,6 +296,13 @@ def smartMultiply(string):
         string = float(string)
     return string
 
+# 把数据中的 - 改为 0
+def noSlash(str):
+    if str == '-':
+        return '0'
+    else:
+        return str
+
 
 # 从一个静态BeautifulSoup页面解析表格并存储进SFrame
 def grabData(bs, SFrame):
@@ -246,24 +315,23 @@ def grabData(bs, SFrame):
     while counter < len(table):
         row_sframe = tc.SFrame({'code': [str(table[counter].find(class_=' listview-col-Code').string)],
                                 'name': [str(table[counter].find(class_=' listview-col-Name').string)],
-                                'close': [smartMultiply(table[counter].find(class_=' listview-col-Close').string)],
-                                'percent_chg': [smartMultiply(
-                                    table[counter].find(class_='listview-col-ChangePercent sorting_1').string)],
-                                'change': [smartMultiply(table[counter].find(class_=' listview-col-Change').string)],
-                                'volume': [smartMultiply(table[counter].find(class_=' listview-col-Volume').string)],
+                                'close': [smartMultiply(noSlash(table[counter].find(class_=' listview-col-Close').string))],
+                                'percent_chg': [smartMultiply(noSlash(table[counter].find(class_='listview-col-ChangePercent sorting_1').string))],
+                                'change': [smartMultiply(noSlash(table[counter].find(class_=' listview-col-Change').string))],
+                                'volume': [smartMultiply(noSlash(table[counter].find(class_=' listview-col-Volume').string))],
                                 'turn_volume': [
-                                    smartMultiply(table[counter].find(class_=' listview-col-Amount').string)],
+                                    smartMultiply(noSlash(table[counter].find(class_=' listview-col-Amount').string))],
                                 'amplitude': [
-                                    smartMultiply(table[counter].find(class_=' listview-col-Amplitude').string)],
-                                'high': [smartMultiply(table[counter].find(class_=' listview-col-High').string)],
-                                'low': [smartMultiply(table[counter].find(class_=' listview-col-Low').string)],
-                                'now_open': [smartMultiply(table[counter].find(class_=' listview-col-Open').string)],
+                                    smartMultiply(noSlash(table[counter].find(class_=' listview-col-Amplitude').string))],
+                                'high': [smartMultiply(noSlash(table[counter].find(class_=' listview-col-High').string))],
+                                'low': [smartMultiply(noSlash(table[counter].find(class_=' listview-col-Low').string))],
+                                'now_open': [smartMultiply(noSlash(table[counter].find(class_=' listview-col-Open').string))],
                                 'previous_close': [
-                                    smartMultiply(table[counter].find(class_=' listview-col-PreviousClose').string)],
+                                    smartMultiply(noSlash(table[counter].find(class_=' listview-col-PreviousClose').string))],
                                 'volume_rate': [
-                                    smartMultiply(table[counter].find(class_=' listview-col-VolumeRate').string)],
+                                    smartMultiply(noSlash(table[counter].find(class_=' listview-col-VolumeRate').string))],
                                 'turnover_rate': [
-                                    smartMultiply(table[counter].find(class_=' listview-col-TurnoverRate').string)],
+                                    smartMultiply(noSlash(table[counter].find(class_=' listview-col-TurnoverRate').string))],
                                 'report_url': [
                                     'http://emweb.securities.eastmoney.com/f10_v2/FinanceAnalysis.aspx?type=web&code=sz' +
                                     table[counter].find(class_=' listview-col-Code').string + '#lrb-0'],
@@ -292,7 +360,7 @@ def makeData(url, SFrame):
         try:
             browser.find_element_by_id('main-table_next').click()
         except ElementNotVisibleException:
-            print('Warning: Some data are out of reach.')
+            print('Warning: 无法获得某些破损的数据.')
         bs = BeautifulSoup(browser.page_source, "lxml")
         counter += 1
 
@@ -315,7 +383,7 @@ def analysis_turnover_rate(SFrame):
 def analysis_volume_rate(SFrame):
     return SFrame[ SFrame['volume_rate'] > 0.3]
 
-
+# 查找报表
 def getReport(url, income_limit, profit_limit):
     browser = webdriver.Chrome()  # Get local session of chrome
     browser.get(url)  # Load page
@@ -352,7 +420,7 @@ def getReport(url, income_limit, profit_limit):
     # increase_list = [income_increase, profit_increase]  # [营业总收入增长, 净利润增长]
 
     if income_increase > income_limit and profit_increase > profit_limit:
-        print('---------------------------')
+        print('-------------------------------------------------')
         print('营业总收入增长', income_increase)
         print('净利润增长', profit_increase)
     return income_increase > income_limit and profit_increase > profit_limit
@@ -369,39 +437,98 @@ def recommendStock(SFrame):
             print('成交额：' + str(SFrame[counter]['turn_volume']))
             print('成交量比增幅：' + str(SFrame[counter]['amplitude']))
             print('换手率：' + str(SFrame[counter]['turnover_rate']))
-            print('---------------------------')
+            print('-------------------------------------------------')
         counter += 1
 
+def user_interface():
+    choice = greetings()
+    if choice == 'a':
+        inputCode()
+    elif choice == 's':
+        searchCode()
+    elif choice == 'l':
+        for element in [(k, codename_dict[k]) for k in sorted(codename_dict.keys())]:
+            print(element)
+        user_interface()
+    else:
+        user_interface()
+
+def greetings():
+    print('+-------------------欢迎界面-------------------+')
+    print('| 请选择您要执行的操作:                          |')
+    print('| 1. 输入a来分析指定板块                         |')
+    print('| 2. 输入s来搜寻板块代码                         |')
+    print('| 3. 输入l来显示所有代码                         |')
+    print('+---------------------------------------------+')
+    choice = str(input('命令:'))
+    return choice
+
+def searchCode():
+    isDone = False
+    print('+--------------输入想要查找的板块名--------------+')
+    while isDone == False:
+        user_input = str(input('搜索板块名:'))
+        if user_input == 'quit':
+            print('用户已取消操作！')
+            break
+        try:
+            print(user_input + '代码是：' + name_dict[user_input])
+            isDone = True
+        except KeyError:
+            print('板块不存在!')
+    user_interface()
 
 # 提示用户粘贴板块url
-print('----------输入板块----------')
-print('请将板块的url末尾代码粘贴（例如BK04471）并按下回车键：')
-code_name = str(input('URL 末尾代码:'))
-url = 'http://quote.eastmoney.com/center/boardlist.html#boards-' + str(code_name)
-print('---------------------------')
+def inputCode():
+    print('+-------------------分析板块--------------------+')
+    print('|输入板块代号（输入quit退出至主页面, all分析所有板块）|')
+    print('-----------------------------------------------')
+    code_name = str(input('代号:'))
+    if code_name == 'all':
+        for each_bk in code_dict:
+            bk_name = codename_dict[each_bk.keys()]
+            makeRecommend(code_dict[each_bk], bk_name)
+    elif code_name == 'quit':
+        user_interface()
+    else:
+        makeRecommend(code_dict[code_name], codename_dict[code_name])
 
-# 创建四个空SFrame，以占位行开头
-all_data = tc.SFrame({'code': ['000000'], 'name': ['哔哩哔哩'],
-                        'close': [0.0], 'percent_chg': [0.0],
-                        'change': [0.0], 'volume': [0.0], 'turn_volume': [0.0], 'amplitude': [0.0],
-                        'high': [0.0], 'low': [0.0],
-                        'now_open': [0.0], 'previous_close': [0.0], 'volume_rate': [0.0],
-                        'turnover_rate': [0.0], 'report_url': ['http://www.bilibili.com']})
+def makeRecommend(url, bk_name):
+    # 创建四个空SFrame，以占位行开头
+    all_data = tc.SFrame({'code': ['000000'], 'name': ['哔哩哔哩'],
+                          'close': [0.0], 'percent_chg': [0.0],
+                          'change': [0.0], 'volume': [0.0], 'turn_volume': [0.0], 'amplitude': [0.0],
+                          'high': [0.0], 'low': [0.0],
+                          'now_open': [0.0], 'previous_close': [0.0], 'volume_rate': [0.0],
+                          'turnover_rate': [0.0], 'report_url': ['http://www.bilibili.com']})
+
+    # 获取信息
+    all_data = makeData(url, all_data)
+
+    # 初步筛选
+    analyze_data = analyze_stock(all_data)
+
+    # 最终推荐
+    print('---------------' + bk_name + '---------------')
+    recommendStock(analyze_data)
+
+
+# 执行UI
+user_interface()
 
 
 
-# 获取信息
-all_data = makeData(url, all_data)
 
 
 
-# 初步筛选
-analyze_data = analyze_stock(all_data)
 
 
 
-# 最终推荐
-print('----------以下是从选择板块里推荐的股票----------')
-recommendStock(analyze_data)
+
+
+
+
+
+
 
 
