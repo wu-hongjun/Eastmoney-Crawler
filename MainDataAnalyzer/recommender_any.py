@@ -371,17 +371,17 @@ def makeData(url, SFrame):
 
 # 初步筛选分析程序
 def analyze_stock(SFrame):
-    SFrame = analysis_turnover_rate(SFrame)
-    SFrame = analysis_volume_rate(SFrame)
+    SFrame = analysis_turnover_rate(SFrame, var_list[0])
+    SFrame = analysis_volume_rate(SFrame, var_list[1])
     return SFrame
 
 # 返回所有换手率大于5%的行
-def analysis_turnover_rate(SFrame):
-    return SFrame[SFrame['turnover_rate'] > 0.05]
+def analysis_turnover_rate(SFrame, turnover_rate):
+    return SFrame[SFrame['turnover_rate'] > turnover_rate]
 
 # 返回所有量比大于30%的行
-def analysis_volume_rate(SFrame):
-    return SFrame[ SFrame['volume_rate'] > 0.3]
+def analysis_volume_rate(SFrame, volume_rate):
+    return SFrame[ SFrame['volume_rate'] > volume_rate]
 
 # 查找报表
 def getReport(url, income_limit, profit_limit):
@@ -420,14 +420,13 @@ def getReport(url, income_limit, profit_limit):
     # increase_list = [income_increase, profit_increase]  # [营业总收入增长, 净利润增长]
 
     if income_increase > income_limit and profit_increase > profit_limit:
-        print('-------------------------------------------------')
         print('营业总收入增长', income_increase)
         print('净利润增长', profit_increase)
     return income_increase > income_limit and profit_increase > profit_limit
 
 def recommendStock(SFrame):
-    income_limit = 0.25
-    profit_limit = 0.25
+    income_limit = var_list[2]
+    profit_limit = var_list[3]
     counter = 0
     while counter < len(SFrame):
         if getReport(SFrame[counter]['report_url'], income_limit, profit_limit):
@@ -443,7 +442,7 @@ def recommendStock(SFrame):
 def user_interface():
     choice = greetings()
     if choice == 'a':
-        inputCode()
+        var_list = inputCode()
     elif choice == 's':
         searchCode()
     elif choice == 'l':
@@ -478,9 +477,16 @@ def searchCode():
             print('板块不存在!')
     user_interface()
 
-# 提示用户粘贴板块url
+# 分析板块
 def inputCode():
     print('+-------------------分析板块--------------------+')
+    print('|输入变量：                                     |')
+    print('-----------------------------------------------')
+    turnover_rate = input('换手率大于（小数，如0.05对应5%）：')
+    volume_rate= input('量比大于（小数，如0.3对应30%）：')
+    income_rate = input('营业收入大于（小数，如0.3对应30%）：')
+    benefit_rate = input('净利润大于（小数，如0.3对应30%）')
+    print('+----------------------------------------------+')
     print('|输入板块代号（输入quit退出至主页面, all分析所有板块）|')
     print('-----------------------------------------------')
     code_name = str(input('代号:'))
@@ -492,7 +498,9 @@ def inputCode():
         user_interface()
     else:
         makeRecommend(code_dict[code_name], codename_dict[code_name])
+    return [turnover_rate, volume_rate, income_rate, benefit_rate]
 
+# 推荐股票
 def makeRecommend(url, bk_name):
     # 创建四个空SFrame，以占位行开头
     all_data = tc.SFrame({'code': ['000000'], 'name': ['哔哩哔哩'],
@@ -514,6 +522,7 @@ def makeRecommend(url, bk_name):
 
 
 # 执行UI
+var_list= []
 user_interface()
 
 
