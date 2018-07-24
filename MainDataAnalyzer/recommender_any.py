@@ -347,7 +347,7 @@ def makeData(url, SFrame):
     browser = webdriver.Chrome()  # Get local session of chrome
     # url = search_area[topic]  # Example: '电子信息'
     browser.get(url)  # Load page
-    browser.implicitly_wait(2)  # 智能等待2秒
+    browser.implicitly_wait(20)  # 智能等待20秒
 
     # 第一次访问时判定菜单数量来决定浏览多少次表格
     bs = BeautifulSoup(browser.page_source, "lxml")
@@ -384,12 +384,16 @@ def analysis_volume_rate(SFrame, volume_rate):
     return SFrame[ SFrame['volume_rate'] > volume_rate]
 
 # 查找报表
-def getReport(url, income_limit, profit_limit):
+def getReport(SFrame, bankuai, url, income_limit, profit_limit):
     browser = webdriver.Chrome()  # Get local session of chrome
     browser.get(url)  # Load page
     soup = BeautifulSoup(browser.page_source, "lxml")
     browser.close()
 
+    # 寻找股票名称
+    stock_name = soup.findAll(id="stock_full_name123")
+
+    # 粗加工数据
     ulist = []
     trs = soup.find_all('tr')
     for tr in trs:
@@ -398,6 +402,7 @@ def getReport(url, income_limit, profit_limit):
             ui.append(td.string)
         ulist.append(ui)
 
+    # 提取营业额和净利润
     income_increase = 0
     profit_increase = 0
     for element in ulist:
@@ -406,30 +411,42 @@ def getReport(url, income_limit, profit_limit):
             now_data = smartMultiply(income_data_list[3])
             past_data = smartMultiply(income_data_list[11])
             income_increase = (now_data - past_data) / past_data
-            # print('现营业总收入', now_data)
-            # print('一年前营业总收入', past_data)
-            # print('营业总收入增长', income_increase)
         elif ('净利润' in element):
             profit_data_list = element
             now_data = smartMultiply(profit_data_list[3])
             past_data = smartMultiply(profit_data_list[11])
             profit_increase = (now_data - past_data) / past_data
-            # print('现净利润', now_data)
-            # print('一年前净利润', past_data)
-            # print('净利润增长', income_increase)
-    # increase_list = [income_increase, profit_increase]  # [营业总收入增长, 净利润增长]
 
     if income_increase > income_limit and profit_increase > profit_limit:
         print('营业总收入增长', income_increase)
         print('净利润增长', profit_increase)
-    return income_increase > income_limit and profit_increase > profit_limit
+        # appendSFrame(SFrame, stock_name, bankuai, income_increase, profit_increase)
 
-def recommendStock(SFrame):
+
+    return [income_increase > income_limit and profit_increase > profit_limit, income_increase, profit_increase]
+
+"""
+# 用于在精选数据库中添加精选信息
+def appendSFrame(SFrame, stock_name, bankuai, income_increase, profit_increase):
+    origional_data = SFrame['name' == stock_name]
+    row = tc.SFrame({'code': [origional_data['code']], 'name': [origional_data['name']],
+                     'bankuai': [bankuai],
+                     'close': [origional_data['close']], 'percent_chg': [origional_data['percent_chg']],
+                     'change': [origional_data['change']], 'volume': [origional_data['volume']],
+                     'turn_volume': [origional_data['turn_volume']], 'amplitude': [origional_data['amplitude']],
+                     'volume_rate': [origional_data['volume_rate']], 'turnover_rate': [origional_data['turnover_rate']],
+                     'news_url': [''],
+                     'income_increase': [income_increase], 'profit_increase': [profit_increase]})
+    selected_data.append(row)
+"""
+
+def recommendStock(SFrame, bankuai):
     income_limit = var_list[2]
     profit_limit = var_list[3]
     counter = 0
     while counter < len(SFrame):
-        if getReport(SFrame[counter]['report_url'], income_limit, profit_limit):
+        result_list = getReport(SFrame, bankuai, SFrame[counter]['report_url'], income_limit, profit_limit)
+        if result_list[0]:
             print('股票名称：' + SFrame[counter]['name'])
             print('股票代码：' + SFrame[counter]['code'])
             print('成交量：' + str(SFrame[counter]['volume']))
@@ -437,17 +454,41 @@ def recommendStock(SFrame):
             print('成交量比增幅：' + str(SFrame[counter]['amplitude']))
             print('换手率：' + str(SFrame[counter]['turnover_rate']))
             print('-------------------------------------------------')
+            # appendSFrame(selected_data, SFrame[counter]['name'], bankuai, result_list[1], result_list[2])
+            row = tc.SFrame({'code': [SFrame[counter]['code']], 'name': [SFrame[counter]['name']],
+                             'bankuai': [bankuai],
+                             'close': [SFrame[counter]['close']], 'percent_chg': [SFrame[counter]['percent_chg']],
+                             'change': [SFrame[counter]['change']], 'volume': [SFrame[counter]['volume']],
+                             'turn_volume': [SFrame[counter]['turn_volume']], 'amplitude': [SFrame[counter]['amplitude']],
+                             'volume_rate': [SFrame[counter]['volume_rate']],
+                             'turnover_rate': [SFrame[counter]['turnover_rate']],
+                             'news_url': [''],
+                             'income_increase': [result_list[1]], 'profit_increase': [result_list[2]]})
+            selected_data.append(row)
+
         counter += 1
 
 def user_interface():
     choice = greetings()
     if choice == 'a':
-        var_list = inputCode()
+        inputCode()
     elif choice == 's':
         searchCode()
     elif choice == 'l':
-        for element in [(k, codename_dict[k]) for k in sorted(codename_dict.keys())]:
-            print(element)
+        print('----------------以下是所有板块代码----------------')
+        element_list = [(k, codename_dict[k]) for k in sorted(codename_dict.keys())]
+        counter = 0
+        while counter < len(element_list):
+            print(element_list[counter][0] + ' - ' + element_list[counter][1])
+            counter += 1
+        print('-----------------------------------------------')
+        user_interface()
+    elif choice == 'x':
+        print(selected_data)
+        if selected_data[0]['name'] != '数据不存在':
+            selected_data.show()
+        else:
+            print('没有分析完成的数据！')
         user_interface()
     else:
         user_interface()
@@ -458,6 +499,7 @@ def greetings():
     print('| 1. 输入a来分析指定板块                         |')
     print('| 2. 输入s来搜寻板块代码                         |')
     print('| 3. 输入l来显示所有代码                         |')
+    print('| 4. 输入x来显示所有选股                         |')
     print('+---------------------------------------------+')
     choice = str(input('命令:'))
     return choice
@@ -482,10 +524,30 @@ def inputCode():
     print('+-------------------分析板块--------------------+')
     print('|输入变量：                                     |')
     print('-----------------------------------------------')
-    turnover_rate = input('换手率大于（小数，如0.05对应5%）：')
-    volume_rate= input('量比大于（小数，如0.3对应30%）：')
-    income_rate = input('营业收入大于（小数，如0.3对应30%）：')
-    benefit_rate = input('净利润大于（小数，如0.3对应30%）')
+    turnover_rate = input('换手率大于（默认0.05对应5%）：')
+    if turnover_rate == '':
+        print('换手率设为默认0.05！')
+        turnover_rate = 0.05
+    var_list.append(float(turnover_rate))
+
+    volume_rate= input('量比大于（默认0.3对应30%）：')
+    if volume_rate == '':
+        print('量比设为默认0.3！')
+        volume_rate = 0.3
+    var_list.append(float(volume_rate))
+
+    income_rate = input('营业收入大于（默认0.3对应30%）：')
+    if income_rate == '':
+        print('营业收入设为默认0.3！')
+        income_rate = 0.3
+    var_list.append(float(income_rate))
+
+    benefit_rate = input('净利润大于（默认0.3对应30%）:x')
+    if benefit_rate == '':
+        print('净利润设为默认0.3！')
+        benefit_rate = 0.3
+    var_list.append(float(benefit_rate))
+
     print('+----------------------------------------------+')
     print('|输入板块代号（输入quit退出至主页面, all分析所有板块）|')
     print('-----------------------------------------------')
@@ -493,15 +555,19 @@ def inputCode():
     if code_name == 'all':
         for each_bk in code_dict:
             bk_name = codename_dict[each_bk]
-            makeRecommend(code_dict[each_bk], bk_name)
+            makeRecommend(selected_data, code_dict[each_bk], bk_name)
     elif code_name == 'quit':
         user_interface()
     else:
-        makeRecommend(code_dict[code_name], codename_dict[code_name])
+        makeRecommend(selected_data, code_dict[code_name], codename_dict[code_name])
     return [turnover_rate, volume_rate, income_rate, benefit_rate]
 
+
+def removeFront(SFrame):
+    return SFrame[1:len(SFrame)]
+
 # 推荐股票
-def makeRecommend(url, bk_name):
+def makeRecommend(selected_data, url, bk_name):
     # 创建四个空SFrame，以占位行开头
     all_data = tc.SFrame({'code': ['000000'], 'name': ['哔哩哔哩'],
                           'close': [0.0], 'percent_chg': [0.0],
@@ -518,11 +584,27 @@ def makeRecommend(url, bk_name):
 
     # 最终推荐
     print('---------------------' + bk_name + '---------------------')
-    recommendStock(analyze_data)
+    recommendStock(analyze_data, bk_name)
+
+    # selected_data = removeFront(selected_data)
+
+    user_interface()
+
+    # return selected_data
 
 
+# ===================================主执行部分===================================
 # 执行UI
 var_list= []
+
+# 新建精选数据库
+selected_data = tc.SFrame({'code': ['000000'], 'name': ['数据不存在'],'bankuai': ['二次元'],
+                      'close': [0.0], 'percent_chg': [0.0],'change': [0.0],
+                      'volume': [0.0], 'turn_volume': [0.0],
+                      'amplitude': [0.0],'volume_rate': [0.0],'turnover_rate': [0.0],
+                      'news_url': ['http://www.bilibili.com'], 'income_increase': [0.0], 'profit_increase': [0.0]})
+
+# UI
 user_interface()
 
 
