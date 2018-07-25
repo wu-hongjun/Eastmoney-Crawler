@@ -11,7 +11,6 @@ import turicreate as tc
 import datetime
 
 
-f - 保险 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04741
 fileRoot = './SelectedData'
 code_dict = {'a' : 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04471',
              'b' : 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04931',
