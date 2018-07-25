@@ -8,87 +8,11 @@ from bs4 import BeautifulSoup
 from decimal import Decimal
 from selenium.common.exceptions import ElementNotVisibleException
 import turicreate as tc
+import datetime
 
 
-
-# 定义要搜索的URL信息
-"""
-a - 电子信息 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04471
-b - 新能源 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04931
-c - 新材料 - http://quote.eastmoney.com/center/boardlist.html#boards-BK05231
-d - 全息技术 - http://quote.eastmoney.com/center/boardlist.html#boards-BK06991
-
-e - 医疗行业 - http://quote.eastmoney.com/center/boardlist.html#boards-BK07271
 f - 保险 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04741
-g - 化工行业 - http://quote.eastmoney.com/center/boardlist.html#boards-BK05381
-h - 化肥行业 - http://quote.eastmoney.com/center/boardlist.html#boards-BK07311
-
-i - 有色金属 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04781
-j - 钢铁行业 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04791
-k - 家电行业 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04561
-l - 包装材料 - http://quote.eastmoney.com/center/boardlist.html#boards-BK07331
-
-m - 水泥建材 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04241
-n - 贵金属 - http://quote.eastmoney.com/center/boardlist.html#boards-BK07321
-o - 电信运营 - http://quote.eastmoney.com/center/boardlist.html#boards-BK07361
-p - 航天航空 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04801
-
-q - 木业家具 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04761
-r - 多元金融 - http://quote.eastmoney.com/center/boardlist.html#boards-BK07381
-s - 食品饮料 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04381
-t - 化工行业 - http://quote.eastmoney.com/center/boardlist.html#boards-BK05381
-
-u - 水泥建材 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04241
-v - 电信运营 - http://quote.eastmoney.com/center/boardlist.html#boards-BK07361
-w - 家电行业 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04561
-x - 专用设备 - http://quote.eastmoney.com/center/boardlist.html#boards-BK09101
-
-y - 文教休闲 - http://quote.eastmoney.com/center/boardlist.html#boards-BK07401
-z - 交运物流 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04221
-aa - 塑胶制品 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04541
-bb - 金属制品 - http://quote.eastmoney.com/center/boardlist.html#boards-BK07391
-
-cc - 输配电气 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04571
-dd - 石油行业 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04641
-ee - 机械行业 - http://quote.eastmoney.com/center/boardlist.html#boards-BK05451
-ff - 环保工程 - http://quote.eastmoney.com/center/boardlist.html#boards-BK07281
-
-gg - 旅游酒店 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04851
-hh - 船舶制造 - http://quote.eastmoney.com/center/boardlist.html#boards-BK07291
-ii - 安防设备 - http://quote.eastmoney.com/center/boardlist.html#boards-BK07351
-jj - 房地产 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04511
-
-kk - 银行 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04751
-ll - 汽车行业 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04811
-mm - 装修装饰 - http://quote.eastmoney.com/center/boardlist.html#boards-BK07251
-nn - 金属制品 - http://quote.eastmoney.com/center/boardlist.html#boards-BK07391
-
-oo - 园林工程 - http://quote.eastmoney.com/center/boardlist.html#boards-BK07261
-pp - 券商信托 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04731
-qq - 港口水运 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04501
-rr - 电力行业 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04281
-
-ss - 造纸印刷 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04701
-tt - 输配电气 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04571
-uu - 化肥行业 - http://quote.eastmoney.com/center/boardlist.html#boards-BK07311
-vv - 交运设备 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04291
-
-ww - 农药兽药 - http://quote.eastmoney.com/center/boardlist.html#boards-BK07301
-xx - 综合行业 - http://quote.eastmoney.com/center/boardlist.html#boards-BK05391
-yy - 材料行业 - http://quote.eastmoney.com/center/boardlist.html#boards-BK05371
-zz - 文化传媒 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04861
-
-aaa - 国际贸易 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04841
-bbb - 软件服务 - http://quote.eastmoney.com/center/boardlist.html#boards-BK07371
-ccc - 电子信息 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04471
-ddd - 电子元件 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04591
-
-eee - 医药制造 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04651
-fff - 包装材料 - http://quote.eastmoney.com/center/boardlist.html#boards-BK07331
-ggg - 农牧饲渔 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04331
-hhh - 酿酒行业 - http://quote.eastmoney.com/center/boardlist.html#boards-BK04771
-
-"""
+fileRoot = './SelectedData'
 code_dict = {'a' : 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04471',
              'b' : 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04931',
              'c':'http://quote.eastmoney.com/center/boardlist.html#boards-BK05231',
@@ -384,7 +308,8 @@ def analysis_volume_rate(SFrame, volume_rate):
     return SFrame[ SFrame['volume_rate'] > volume_rate]
 
 # 查找报表
-def getReport(SFrame, bankuai, url, income_limit, profit_limit):
+def getReport(SFrame, bankuai, row, income_limit, profit_limit):
+    url = row['report_url']
     browser = webdriver.Chrome()  # Get local session of chrome
     browser.get(url)  # Load page
     soup = BeautifulSoup(browser.page_source, "lxml")
@@ -420,8 +345,13 @@ def getReport(SFrame, bankuai, url, income_limit, profit_limit):
     if income_increase > income_limit and profit_increase > profit_limit:
         print('营业总收入增长', income_increase)
         print('净利润增长', profit_increase)
-        # appendSFrame(SFrame, stock_name, bankuai, income_increase, profit_increase)
-
+        new_row = tc.SFrame({'code': [row['code']], 'name': [row['name']], 'bankuai': [bankuai],
+                                   'close': [row['close']], 'percent_chg': [row['percent_chg']], 'change': [row['change']],
+                                   'volume': [row['volume']], 'turn_volume': [row['turn_volume']],
+                                   'amplitude': [row['amplitude']], 'volume_rate': [row['volume_rate']], 'turnover_rate': [row['turnover_rate']],
+                                   'news_url': [''], 'income_increase': [income_increase],
+                                   'profit_increase': [profit_increase]})
+        selected_data.append(new_row)
 
     return [income_increase > income_limit and profit_increase > profit_limit, income_increase, profit_increase]
 
@@ -445,7 +375,7 @@ def recommendStock(SFrame, bankuai):
     profit_limit = var_list[3]
     counter = 0
     while counter < len(SFrame):
-        result_list = getReport(SFrame, bankuai, SFrame[counter]['report_url'], income_limit, profit_limit)
+        result_list = getReport(SFrame[counter], bankuai, SFrame[counter], income_limit, profit_limit)
         if result_list[0]:
             print('股票名称：' + SFrame[counter]['name'])
             print('股票代码：' + SFrame[counter]['code'])
@@ -455,6 +385,7 @@ def recommendStock(SFrame, bankuai):
             print('换手率：' + str(SFrame[counter]['turnover_rate']))
             print('-------------------------------------------------')
             # appendSFrame(selected_data, SFrame[counter]['name'], bankuai, result_list[1], result_list[2])
+
             row = tc.SFrame({'code': [SFrame[counter]['code']], 'name': [SFrame[counter]['name']],
                              'bankuai': [bankuai],
                              'close': [SFrame[counter]['close']], 'percent_chg': [SFrame[counter]['percent_chg']],
@@ -490,6 +421,10 @@ def user_interface():
         else:
             print('没有分析完成的数据！')
         user_interface()
+    elif choice == 'j':
+        fileName = input('输入文件名：')
+        parseSFrame(fileName)
+        user_interface()
     else:
         user_interface()
 
@@ -500,6 +435,8 @@ def greetings():
     print('| 2. 输入s来搜寻板块代码                         |')
     print('| 3. 输入l来显示所有代码                         |')
     print('| 4. 输入x来显示所有选股                         |')
+    print('| 5. 输入j来加载以前分析完成股票数据               |')
+    print('| 6. 输入n来加载以前分析完成新闻数据               |')
     print('+---------------------------------------------+')
     choice = str(input('命令:'))
     return choice
@@ -542,7 +479,7 @@ def inputCode():
         income_rate = 0.3
     var_list.append(float(income_rate))
 
-    benefit_rate = input('净利润大于（默认0.3对应30%）:x')
+    benefit_rate = input('净利润大于（默认0.3对应30%）:')
     if benefit_rate == '':
         print('净利润设为默认0.3！')
         benefit_rate = 0.3
@@ -560,9 +497,41 @@ def inputCode():
         user_interface()
     else:
         makeRecommend(selected_data, code_dict[code_name], codename_dict[code_name])
+
+    saveSFrame(selected_data, fileRoot)
+    showSFrame(selected_data)
     return [turnover_rate, volume_rate, income_rate, benefit_rate]
 
 
+# 目前很简陋
+def showSFrame(selected_data):
+    print(selected_data)
+
+
+# 用于加载SFrame
+def parseSFrame(fileName):
+    filePath = './SelectedData/' + fileName + '/'
+    selected_data = tc.SFrame(data=filePath)
+
+
+# 用于保存SFrame
+def saveSFrame(SFrame, fileRoot):
+    # 保存数据
+    date = '20' + str(datetime.datetime.now().strftime("%y%m%d-%H%M"))
+    filepath = fileRoot + '/' + str(date) + '/'
+    SFrame.save(filepath)
+    print('成功保存数据文件！数据路径：' + filepath)
+
+    # 打印时间戳
+    print('程序运行时间戳：20'
+          + str(datetime.datetime.now().strftime("%y")) + '年'
+          + str(datetime.datetime.now().strftime("%m")) + '月'
+          + str(datetime.datetime.now().strftime("%d")) + '日'
+          + str(datetime.datetime.now().strftime("%H")) + '时'
+          + str(datetime.datetime.now().strftime("%M")) + '分'
+          + str(datetime.datetime.now().strftime("%S")) + '秒')
+
+# 用于移除第一个占位符
 def removeFront(SFrame):
     return SFrame[1:len(SFrame)]
 
@@ -588,7 +557,7 @@ def makeRecommend(selected_data, url, bk_name):
 
     # selected_data = removeFront(selected_data)
 
-    user_interface()
+    # user_interface()
 
     # return selected_data
 
