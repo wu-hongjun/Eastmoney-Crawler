@@ -12,66 +12,68 @@ import datetime
 
 
 fileRoot = './SelectedData'
-code_dict = {'a' : 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04471',
-             'b' : 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04931',
-             'c':'http://quote.eastmoney.com/center/boardlist.html#boards-BK05231',
-             'd':'http://quote.eastmoney.com/center/boardlist.html#boards-BK06991',
-             'e':'http://quote.eastmoney.com/center/boardlist.html#boards-BK07271',
-             'f':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04741',
-             'g':'http://quote.eastmoney.com/center/boardlist.html#boards-BK05381',
-             'h':'http://quote.eastmoney.com/center/boardlist.html#boards-BK07311',
-             'i':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04781',
-             'j':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04791',
-             'k':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04561',
-             'l':'http://quote.eastmoney.com/center/boardlist.html#boards-BK07331',
-             'm':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04241',
-             'n':'http://quote.eastmoney.com/center/boardlist.html#boards-BK07321',
-             'o':'http://quote.eastmoney.com/center/boardlist.html#boards-BK07361',
-             'p':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04801',
-             'q':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04761',
-             'r':'http://quote.eastmoney.com/center/boardlist.html#boards-BK07381',
-             's':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04381',
-             't':'http://quote.eastmoney.com/center/boardlist.html#boards-BK05381',
-             'u':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04241',
-             'v':'http://quote.eastmoney.com/center/boardlist.html#boards-BK07361',
-             'w':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04561',
-             'x':'http://quote.eastmoney.com/center/boardlist.html#boards-BK09101',
-             'y':'http://quote.eastmoney.com/center/boardlist.html#boards-BK07401',
-             'z':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04221',
-             'aa':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04541',
-             'bb':'http://quote.eastmoney.com/center/boardlist.html#boards-BK07391',
-             'cc':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04571',
-             'dd':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04641',
-             'ee':'http://quote.eastmoney.com/center/boardlist.html#boards-BK05451',
-             'ff':'http://quote.eastmoney.com/center/boardlist.html#boards-BK07281',
-             'gg':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04851',
-             'hh':'http://quote.eastmoney.com/center/boardlist.html#boards-BK07291',
-             'ii':'http://quote.eastmoney.com/center/boardlist.html#boards-BK07351',
-             'jj':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04511',
-             'kk':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04751',
-             'll':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04811',
-             'mm':'http://quote.eastmoney.com/center/boardlist.html#boards-BK07251',
-             'nn':'http://quote.eastmoney.com/center/boardlist.html#boards-BK07391',
-             'oo':'http://quote.eastmoney.com/center/boardlist.html#boards-BK07261',
-             'pp':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04731',
-             'qq':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04501',
-             'rr':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04281',
-             'ss':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04701',
-             'tt':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04571',
-             'uu':'http://quote.eastmoney.com/center/boardlist.html#boards-BK07311',
-             'vv':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04291',
-             'ww':'http://quote.eastmoney.com/center/boardlist.html#boards-BK07301',
-             'xx':'http://quote.eastmoney.com/center/boardlist.html#boards-BK05391',
-             'yy':'http://quote.eastmoney.com/center/boardlist.html#boards-BK05371',
-             'zz':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04861',
-             'aaa':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04841',
-             'bbb':'http://quote.eastmoney.com/center/boardlist.html#boards-BK07371',
-             'ccc':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04471',
-             'ddd':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04591',
-             'eee':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04651',
-             'fff':'http://quote.eastmoney.com/center/boardlist.html#boards-BK07331',
-             'ggg':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04331',
-             'hhh':'http://quote.eastmoney.com/center/boardlist.html#boards-BK04771'}
+global SELECTED_DATA
+
+code_dict = {'a': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04471',
+             'b': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04931',
+             'c': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK05231',
+             'd': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK06991',
+             'e': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK07271',
+             'f': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04741',
+             'g': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK05381',
+             'h': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK07311',
+             'i': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04781',
+             'j': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04791',
+             'k': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04561',
+             'l': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK07331',
+             'm': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04241',
+             'n': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK07321',
+             'o': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK07361',
+             'p': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04801',
+             'q': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04761',
+             'r': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK07381',
+             's': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04381',
+             't': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK05381',
+             'u': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04241',
+             'v': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK07361',
+             'w': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04561',
+             'x': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK09101',
+             'y': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK07401',
+             'z': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04221',
+             'aa': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04541',
+             'bb': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK07391',
+             'cc': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04571',
+             'dd': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04641',
+             'ee': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK05451',
+             'ff': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK07281',
+             'gg': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04851',
+             'hh': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK07291',
+             'ii': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK07351',
+             'jj': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04511',
+             'kk': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04751',
+             'll': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04811',
+             'mm': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK07251',
+             'nn': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK07391',
+             'oo': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK07261',
+             'pp': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04731',
+             'qq': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04501',
+             'rr': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04281',
+             'ss': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04701',
+             'tt': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04571',
+             'uu': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK07311',
+             'vv': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04291',
+             'ww': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK07301',
+             'xx': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK05391',
+             'yy': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK05371',
+             'zz': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04861',
+             'aaa': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04841',
+             'bbb': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK07371',
+             'ccc': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04471',
+             'ddd': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04591',
+             'eee': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04651',
+             'fff': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK07331',
+             'ggg': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04331',
+             'hhh': 'http://quote.eastmoney.com/center/boardlist.html#boards-BK04771'}
 
 name_dict = {'电子信息': 'a',
              '新能源':'b',
@@ -134,25 +136,25 @@ name_dict = {'电子信息': 'a',
              '农牧饲渔':'ggg',
              '酿酒行业':'hhh'}
 
-codename_dict = {'a':'电子信息',
-             'b':'新能源',
-             'c':'新材料',
-             'd':'全息技术',
-             'e':'医疗行业',
-             'f':'保险',
-             'g':'化工行业',
-             'h':'化肥行业',
-             'i':'有色金属',
-             'j':'钢铁行业',
-             'k':'家电行业',
-             'l':'包装材料',
-             'm':'水泥建材',
-             'n':'贵金属',
-             'o':'电信运营',
-             'p':'航天航空',
-             'q':'木业家具',
-             'r':'多元金融',
-             's':'食品饮料',
+codename_dict = {'a': '电子信息',
+             'b': '新能源',
+             'c': '新材料',
+             'd': '全息技术',
+             'e': '医疗行业',
+             'f': '保险',
+             'g': '化工行业',
+             'h': '化肥行业',
+             'i': '有色金属',
+             'j': '钢铁行业',
+             'k': '家电行业',
+             'l': '包装材料',
+             'm': '水泥建材',
+             'n': '贵金属',
+             'o': '电信运营',
+             'p': '航天航空',
+             'q': '木业家具',
+             'r': '多元金融',
+             's': '食品饮料',
              't':'化工行业',
              'u':'水泥建材',
              'v':'电信运营',
@@ -194,6 +196,17 @@ codename_dict = {'a':'电子信息',
              'fff':'包装材料',
              'ggg':'农牧饲渔',
              'hhh':'酿酒行业'}
+
+bankuai_weight_dict = {'软件服务': 10,
+                       '航天航空': 10,  # 再议
+                       '新能源': 9,  # 再议
+                       '新材料': 9,
+                       '材料行业': 9,  # 再议
+                       '电子信息': 8,
+                       '有色金属': 4,
+                       '?': 3,  # 这啥
+                       '钢铁行业': 2}
+
 
 # 一个从页面获取页数的函数
 def getPageNumber(bs):
@@ -298,24 +311,40 @@ def analyze_stock(SFrame):
     SFrame = analysis_volume_rate(SFrame, var_list[1])
     return SFrame
 
+
 # 返回所有换手率大于5%的行
 def analysis_turnover_rate(SFrame, turnover_rate):
     return SFrame[SFrame['turnover_rate'] > turnover_rate]
+
 
 # 返回所有量比大于30%的行
 def analysis_volume_rate(SFrame, volume_rate):
     return SFrame[ SFrame['volume_rate'] > volume_rate]
 
+
 # 查找报表
-def getReport(SFrame, bankuai, row, income_limit, profit_limit):
+def getReport(xuangu, SFrame, bankuai, row, income_limit, profit_limit):
+    # 爬取网站源代码
     url = row['report_url']
     browser = webdriver.Chrome()  # Get local session of chrome
     browser.get(url)  # Load page
     soup = BeautifulSoup(browser.page_source, "lxml")
     browser.close()
 
-    # 寻找股票名称
-    stock_name = soup.findAll(id="stock_full_name123")
+
+    # 检查是否报表模板错误
+    check_report = soup.findAll(id='stock_full_name123')
+    if len(check_report) != 0:
+        # print(check_report)
+        # print(check_report[0])
+        # print(check_report[0]['value'])
+        keyword = check_report[0]['value']
+        if keyword == '- - - -':  # 纠正SFrame
+            # print(keyword)
+            temp_row = row  # 解决无法显示上证股票报表的问题
+            temp_row['report_url'] = temp_row['report_url'][0:80] + 'sh' + temp_row['report_url'][82:94]
+            # print(temp_row['report_url'])
+            return getReport(xuangu, SFrame, bankuai, temp_row, income_limit, profit_limit)
 
     # 粗加工数据
     ulist = []
@@ -350,9 +379,10 @@ def getReport(SFrame, bankuai, row, income_limit, profit_limit):
                                    'amplitude': [row['amplitude']], 'volume_rate': [row['volume_rate']], 'turnover_rate': [row['turnover_rate']],
                                    'news_url': [''], 'income_increase': [income_increase],
                                    'profit_increase': [profit_increase]})
-        selected_data.append(new_row)
-
-    return [income_increase > income_limit and profit_increase > profit_limit, income_increase, profit_increase]
+        SELECTED_DATA.append(new_row)
+    result = [income_increase > income_limit and profit_increase > profit_limit, income_increase, profit_increase]
+    # print(bankuai,row['name'], result)  # Debug
+    return result
 
 """
 # 用于在精选数据库中添加精选信息
@@ -369,12 +399,13 @@ def appendSFrame(SFrame, stock_name, bankuai, income_increase, profit_increase):
     selected_data.append(row)
 """
 
-def recommendStock(SFrame, bankuai):
+
+def recommendStock(xuangu, SFrame, bankuai):
     income_limit = var_list[2]
     profit_limit = var_list[3]
     counter = 0
     while counter < len(SFrame):
-        result_list = getReport(SFrame[counter], bankuai, SFrame[counter], income_limit, profit_limit)
+        result_list = getReport(xuangu, SFrame[counter], bankuai, SFrame[counter], income_limit, profit_limit)
         if result_list[0]:
             print('股票名称：' + SFrame[counter]['name'])
             print('股票代码：' + SFrame[counter]['code'])
@@ -384,7 +415,7 @@ def recommendStock(SFrame, bankuai):
             print('换手率：' + str(SFrame[counter]['turnover_rate']))
             print('-------------------------------------------------')
             # appendSFrame(selected_data, SFrame[counter]['name'], bankuai, result_list[1], result_list[2])
-
+            """
             row = tc.SFrame({'code': [SFrame[counter]['code']], 'name': [SFrame[counter]['name']],
                              'bankuai': [bankuai],
                              'close': [SFrame[counter]['close']], 'percent_chg': [SFrame[counter]['percent_chg']],
@@ -394,14 +425,15 @@ def recommendStock(SFrame, bankuai):
                              'turnover_rate': [SFrame[counter]['turnover_rate']],
                              'news_url': [''],
                              'income_increase': [result_list[1]], 'profit_increase': [result_list[2]]})
-            selected_data.append(row)
-
+            SELECTED_DATA.append(row)
+            """
         counter += 1
 
-def user_interface():
+
+def user_interface(xuangu):
     choice = greetings()
     if choice == 'a':
-        inputCode()
+        inputCode(xuangu)
     elif choice == 's':
         searchCode()
     elif choice == 'l':
@@ -412,20 +444,21 @@ def user_interface():
             print(element_list[counter][0] + ' - ' + element_list[counter][1])
             counter += 1
         print('-----------------------------------------------')
-        user_interface()
+        user_interface(SELECTED_DATA)
     elif choice == 'x':
-        print(selected_data)
-        if selected_data[0]['name'] != '数据不存在':
-            selected_data.show()
+        print(SELECTED_DATA)
+        if SELECTED_DATA[0]['name'] != '数据不存在':
+            SELECTED_DATA.show()
         else:
             print('没有分析完成的数据！')
-        user_interface()
+        user_interface(SELECTED_DATA)
     elif choice == 'j':
         fileName = input('输入文件名：')
         parseSFrame(fileName)
-        user_interface()
+        user_interface(SELECTED_DATA)
     else:
-        user_interface()
+        user_interface(SELECTED_DATA)
+
 
 def greetings():
     print('+-------------------欢迎界面-------------------+')
@@ -440,6 +473,7 @@ def greetings():
     choice = str(input('命令:'))
     return choice
 
+
 def searchCode():
     isDone = False
     print('+--------------输入想要查找的板块名--------------+')
@@ -453,10 +487,11 @@ def searchCode():
             isDone = True
         except KeyError:
             print('板块不存在!')
-    user_interface()
+    user_interface(SELECTED_DATA)
+
 
 # 分析板块
-def inputCode():
+def inputCode(xuangu):
     print('+-------------------分析板块--------------------+')
     print('|输入变量：                                     |')
     print('-----------------------------------------------')
@@ -491,14 +526,14 @@ def inputCode():
     if code_name == 'all':
         for each_bk in code_dict:
             bk_name = codename_dict[each_bk]
-            makeRecommend(selected_data, code_dict[each_bk], bk_name)
+            makeRecommend(xuangu, code_dict[each_bk], bk_name)
     elif code_name == 'quit':
-        user_interface()
+        user_interface(SELECTED_DATA)
     else:
-        makeRecommend(selected_data, code_dict[code_name], codename_dict[code_name])
+        makeRecommend(xuangu, code_dict[code_name], codename_dict[code_name])
 
-    saveSFrame(selected_data, fileRoot)
-    showSFrame(selected_data)
+    saveSFrame(xuangu, fileRoot)
+    showSFrame(xuangu)
     return [turnover_rate, volume_rate, income_rate, benefit_rate]
 
 
@@ -510,7 +545,7 @@ def showSFrame(selected_data):
 # 用于加载SFrame
 def parseSFrame(fileName):
     filePath = './SelectedData/' + fileName + '/'
-    selected_data = tc.SFrame(data=filePath)
+    SELECTED_DATA = tc.SFrame(data=filePath)
 
 
 # 用于保存SFrame
@@ -530,12 +565,14 @@ def saveSFrame(SFrame, fileRoot):
           + str(datetime.datetime.now().strftime("%M")) + '分'
           + str(datetime.datetime.now().strftime("%S")) + '秒')
 
+
 # 用于移除第一个占位符
 def removeFront(SFrame):
     return SFrame[1:len(SFrame)]
 
+
 # 推荐股票
-def makeRecommend(selected_data, url, bk_name):
+def makeRecommend(xuangu, url, bk_name):
     # 创建四个空SFrame，以占位行开头
     all_data = tc.SFrame({'code': ['000000'], 'name': ['哔哩哔哩'],
                           'close': [0.0], 'percent_chg': [0.0],
@@ -552,11 +589,11 @@ def makeRecommend(selected_data, url, bk_name):
 
     # 最终推荐
     print('---------------------' + bk_name + '---------------------')
-    recommendStock(analyze_data, bk_name)
+    recommendStock(xuangu, analyze_data, bk_name)
 
     # selected_data = removeFront(selected_data)
 
-    # user_interface()
+    # user_interface(SELECTED_DATA)
 
     # return selected_data
 
@@ -566,14 +603,14 @@ def makeRecommend(selected_data, url, bk_name):
 var_list= []
 
 # 新建精选数据库
-selected_data = tc.SFrame({'code': ['000000'], 'name': ['数据不存在'],'bankuai': ['二次元'],
+SELECTED_DATA = tc.SFrame({'code': ['000000'], 'name': ['数据不存在'],'bankuai': ['二次元'],
                       'close': [0.0], 'percent_chg': [0.0],'change': [0.0],
                       'volume': [0.0], 'turn_volume': [0.0],
                       'amplitude': [0.0],'volume_rate': [0.0],'turnover_rate': [0.0],
                       'news_url': ['http://www.bilibili.com'], 'income_increase': [0.0], 'profit_increase': [0.0]})
 
 # UI
-user_interface()
+user_interface(SELECTED_DATA)
 
 
 
