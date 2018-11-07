@@ -1,6 +1,6 @@
 <img align="right" src="https://github.com/Errrneist/Alchemist/blob/master/IMG/xiao.png" alt="FuXiao" width="100">
 
-# Project Alchemist
+# Project Alchemist-Eastmoney Crawler
 * 项目代号来源于天朝程序员对机器学习的昵称：‘炼丹’，意为点石成金【延年益寿需要+1s 炼丹没用】
 * Name from a quote used by Chinese ML reasearchers: 'Machine Learning is like Alchemy.'
 
@@ -10,7 +10,6 @@
 
 ### 开发者（Developer）:  
 * [吴泓骏（Hongjun Wu）](https://errrneist.github.io)
-* [拂晓社 (FuXiao Studio)](https://fuxiao-studio.com)
 
 ### 感谢（Special Thanks）
 * [Dr. Carlos Guestrin](https://www.cs.washington.edu/people/faculty/guestrin).
